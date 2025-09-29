@@ -83,7 +83,7 @@ test("Edit user functionality", async ({ page }) => {
   await expect(page.getByText("User created successfully.")).toBeVisible()
 
   const userRow = page.getByRole("row").filter({ hasText: newUserEmail })
-  await userRow.getByRole("button").click()
+  await userRow.getByRole("button", { name: "Actions" }).click()
 
   await page.getByRole("menuitem", { name: "Edit User" }).click()
 
@@ -113,7 +113,7 @@ test("Delete user functionality", async ({ page }) => {
   await expect(page.getByText("User created successfully.")).toBeVisible()
 
   const userRow = page.getByRole("row").filter({ hasText: newUserEmail })
-  await userRow.getByRole("button").click()
+  await userRow.getByRole("button", { name: "Actions" }).click()
 
   await page.getByRole("menuitem", { name: "Delete User" }).click()
 

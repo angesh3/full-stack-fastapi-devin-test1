@@ -83,7 +83,7 @@ test("Edit item functionality", async ({ page }) => {
   await expect(page.getByText("Item created successfully.")).toBeVisible()
 
   const itemRow = page.getByRole("row").filter({ hasText: originalTitle })
-  await itemRow.getByRole("button").click()
+  await itemRow.getByRole("button", { name: "Actions" }).click()
 
   await page.getByRole("menuitem", { name: "Edit Item" }).click()
 
@@ -114,7 +114,7 @@ test("Delete item functionality", async ({ page }) => {
   await expect(page.getByText("Item created successfully.")).toBeVisible()
 
   const itemRow = page.getByRole("row").filter({ hasText: itemTitle })
-  await itemRow.getByRole("button").click()
+  await itemRow.getByRole("button", { name: "Actions" }).click()
 
   await page.getByRole("menuitem", { name: "Delete Item" }).click()
 
