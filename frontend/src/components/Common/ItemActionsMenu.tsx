@@ -13,7 +13,7 @@ export const ItemActionsMenu = ({ item }: ItemActionsMenuProps) => {
   return (
     <MenuRoot>
       <MenuTrigger asChild>
-        <IconButton variant="ghost" color="inherit">
+        <IconButton variant="ghost" color="inherit" aria-label="Actions">
           <BsThreeDotsVertical />
         </IconButton>
       </MenuTrigger>

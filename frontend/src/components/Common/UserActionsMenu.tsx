@@ -14,7 +14,7 @@ export const UserActionsMenu = ({ user, disabled }: UserActionsMenuProps) => {
   return (
     <MenuRoot>
       <MenuTrigger asChild>
-        <IconButton variant="ghost" color="inherit" disabled={disabled}>
+        <IconButton variant="ghost" color="inherit" disabled={disabled} aria-label="Actions">
           <BsThreeDotsVertical />
         </IconButton>
       </MenuTrigger>
