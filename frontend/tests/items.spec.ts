@@ -33,6 +33,7 @@ test("Add a new item successfully", async ({ page }) => {
   await page.getByRole("button", { name: "Save" }).click()
 
   await expect(page.getByText("Item created successfully.")).toBeVisible()
+  await expect(page.getByRole("dialog")).not.toBeVisible()
   await expect(page.getByText(itemTitle)).toBeVisible()
   await expect(page.getByText(itemDescription)).toBeVisible()
 })
@@ -60,6 +61,7 @@ test("Items table displays correctly with data", async ({ page }) => {
   await page.getByRole("button", { name: "Save" }).click()
 
   await expect(page.getByText("Item created successfully.")).toBeVisible()
+  await expect(page.getByRole("dialog")).not.toBeVisible()
 
   await expect(page.getByRole("columnheader", { name: "ID" })).toBeVisible()
   await expect(page.getByRole("columnheader", { name: "Title" })).toBeVisible()
@@ -81,8 +83,10 @@ test("Edit item functionality", async ({ page }) => {
   await page.getByRole("button", { name: "Save" }).click()
 
   await expect(page.getByText("Item created successfully.")).toBeVisible()
+  await expect(page.getByRole("dialog")).not.toBeVisible()
 
   const itemRow = page.getByRole("row").filter({ hasText: originalTitle })
+  await expect(itemRow).toBeVisible()
   await itemRow.getByRole("button", { name: "Actions" }).click()
 
   await page.getByRole("menuitem", { name: "Edit Item" }).click()
@@ -96,6 +100,7 @@ test("Edit item functionality", async ({ page }) => {
   await page.getByRole("button", { name: "Save" }).click()
 
   await expect(page.getByText("Item updated successfully.")).toBeVisible()
+  await expect(page.getByRole("dialog")).not.toBeVisible()
   await expect(page.getByText(updatedTitle)).toBeVisible()
   await expect(page.getByText("Updated description")).toBeVisible()
   await expect(page.getByText(originalTitle)).not.toBeVisible()
@@ -112,8 +117,10 @@ test("Delete item functionality", async ({ page }) => {
   await page.getByRole("button", { name: "Save" }).click()
 
   await expect(page.getByText("Item created successfully.")).toBeVisible()
+  await expect(page.getByRole("dialog")).not.toBeVisible()
 
   const itemRow = page.getByRole("row").filter({ hasText: itemTitle })
+  await expect(itemRow).toBeVisible()
   await itemRow.getByRole("button", { name: "Actions" }).click()
 
   await page.getByRole("menuitem", { name: "Delete Item" }).click()
@@ -138,6 +145,7 @@ test("Add item with only title (no description)", async ({ page }) => {
   await page.getByRole("button", { name: "Save" }).click()
 
   await expect(page.getByText("Item created successfully.")).toBeVisible()
+  await expect(page.getByRole("dialog")).not.toBeVisible()
   await expect(page.getByText(itemTitle)).toBeVisible()
   await expect(page.getByText("N/A")).toBeVisible()
 })
