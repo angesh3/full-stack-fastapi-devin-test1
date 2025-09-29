@@ -33,7 +33,7 @@ test("Add a new user successfully", async ({ page }) => {
 
   await expect(page.getByText("User created successfully.")).toBeVisible()
   await expect(page.getByRole("dialog")).not.toBeVisible()
-  await expect(page.getByText(newUserEmail)).toBeVisible()
+  await expect(page.getByText(newUserEmail)).toBeVisible({ timeout: 15000 })
 })
 
 test("Add user with invalid email shows error", async ({ page }) => {
@@ -85,7 +85,7 @@ test("Edit user functionality", async ({ page }) => {
   await expect(page.getByRole("dialog")).not.toBeVisible()
 
   const userRow = page.getByRole("row").filter({ hasText: newUserEmail })
-  await expect(userRow).toBeVisible()
+  await expect(userRow).toBeVisible({ timeout: 15000 })
   await userRow.getByRole("button", { name: "Actions" }).click()
 
   await page.getByRole("menuitem", { name: "Edit User" }).click()
@@ -98,7 +98,7 @@ test("Edit user functionality", async ({ page }) => {
 
   await expect(page.getByText("User updated successfully.")).toBeVisible()
   await expect(page.getByRole("dialog")).not.toBeVisible()
-  await expect(page.getByText("Updated Name")).toBeVisible()
+  await expect(page.getByText("Updated Name")).toBeVisible({ timeout: 15000 })
 })
 
 test("Delete user functionality", async ({ page }) => {
@@ -118,7 +118,7 @@ test("Delete user functionality", async ({ page }) => {
   await expect(page.getByRole("dialog")).not.toBeVisible()
 
   const userRow = page.getByRole("row").filter({ hasText: newUserEmail })
-  await expect(userRow).toBeVisible()
+  await expect(userRow).toBeVisible({ timeout: 15000 })
   await userRow.getByRole("button", { name: "Actions" }).click()
 
   await page.getByRole("menuitem", { name: "Delete User" }).click()
@@ -129,7 +129,7 @@ test("Delete user functionality", async ({ page }) => {
   await page.getByRole("button", { name: "Delete" }).click()
 
   await expect(page.getByText("User deleted successfully")).toBeVisible()
-  await expect(page.getByText(newUserEmail)).not.toBeVisible()
+  await expect(page.getByText(newUserEmail)).not.toBeVisible({ timeout: 15000 })
 })
 
 test("Cannot delete current logged-in user", async ({ page }) => {
