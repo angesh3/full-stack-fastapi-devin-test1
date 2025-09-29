@@ -83,7 +83,7 @@ test("Edit user functionality", async ({ page }) => {
   await expect(page.getByText("User created successfully.")).toBeVisible()
 
   const userRow = page.getByRole("row").filter({ hasText: newUserEmail })
-  await userRow.getByRole("button", { name: "" }).click()
+  await userRow.getByRole("button").click()
 
   await page.getByRole("menuitem", { name: "Edit User" }).click()
 
@@ -113,7 +113,7 @@ test("Delete user functionality", async ({ page }) => {
   await expect(page.getByText("User created successfully.")).toBeVisible()
 
   const userRow = page.getByRole("row").filter({ hasText: newUserEmail })
-  await userRow.getByRole("button", { name: "" }).click()
+  await userRow.getByRole("button").click()
 
   await page.getByRole("menuitem", { name: "Delete User" }).click()
 
@@ -130,7 +130,7 @@ test("Cannot delete current logged-in user", async ({ page }) => {
   await page.goto("/admin")
 
   const currentUserRow = page.getByRole("row").filter({ hasText: "You" })
-  const actionsButton = currentUserRow.getByRole("button", { name: "" })
+  const actionsButton = currentUserRow.getByRole("button")
 
   await expect(actionsButton).toBeDisabled()
 })
